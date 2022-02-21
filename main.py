@@ -26,7 +26,7 @@ async def main(client: Client, message: Message):
             await asyncio.sleep(e.x)
         return
     if (message.text == "!start") and (message.from_user.id == (await client.get_me()).id):
-        await message.edit(text=f"Hi, **{(await client.get_me()).first_name}**!\nThis is a Forwarder Userbot by @AbirHasan2005", parse_mode="Markdown",
+        await message.edit(text=f"Hi, **{(await client.get_me()).first_name}**!\nThis is a Forwarder", parse_mode="Markdown",
                            disable_web_page_preview=True)
     elif (message.text == "!help") and (message.from_user.id == (await client.get_me()).id):
         await message.edit(
@@ -58,11 +58,11 @@ async def main(client: Client, message: Message):
             text=f"Trying to Get All Messages from `{str(Config.FORWARD_FROM_CHAT_ID[0])}` and Forwarding to {' '.join(str(Config.FORWARD_TO_CHAT_ID))} ...",
             parse_mode="Markdown", disable_web_page_preview=True)
         await asyncio.sleep(5)
-        try_kang = await Kanger(c=User, m=message)
+        try_kang = await Kanger(c=User, m=message,text="#Manga Update")
         if try_kang == 400:
             return
     elif message.chat.id in Config.FORWARD_FROM_CHAT_ID:
-        try_forward = await ForwardMessage(client, message)
+        try_forward = await ForwardMessage(client, message,text="#Manga Update")
         if try_forward == 400:
             return
 
